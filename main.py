@@ -5,8 +5,9 @@ from web3 import AsyncHTTPProvider, AsyncWeb3
 import random
 from tqdm import tqdm
 from loguru import logger
+import asyncio
 
-def LXP_checker(path: str):
+async def LXP_checker(path: str):
     w3 = AsyncWeb3(AsyncHTTPProvider("https://linea.decubate.com"), request_kwargs=None)
     lxp_contract = w3.eth.contract(
             address=AsyncWeb3.to_checksum_address(contract),
@@ -29,5 +30,5 @@ def LXP_checker(path: str):
 
 
 path = "addresses.txt"
-if __name__== "main":
-    LXP_checker(path)
+if __name__ == "__main__":
+    asyncio.run(LXP_checker(path))
